@@ -1,0 +1,14 @@
+﻿  Source.cpp
+  string.cpp
+  Создание кода...
+string.obj : error LNK2019: ссылка на неразрешенный внешний символ "int __cdecl s2(void)" (?s2@@YAHXZ) в функции _main
+string.obj : error LNK2019: ссылка на неразрешенный внешний символ "int __cdecl s3(void)" (?s3@@YAHXZ) в функции _main
+string.obj : error LNK2019: ссылка на неразрешенный внешний символ "int __cdecl s4(void)" (?s4@@YAHXZ) в функции _main
+string.obj : error LNK2019: ссылка на неразрешенный внешний символ "int __cdecl f1(void)" (?f1@@YAHXZ) в функции _main
+string.obj : error LNK2019: ссылка на неразрешенный внешний символ "int __cdecl f2(void)" (?f2@@YAHXZ) в функции _main
+string.obj : error LNK2019: ссылка на неразрешенный внешний символ "int __cdecl f3(void)" (?f3@@YAHXZ) в функции _main
+string.obj : error LNK2019: ссылка на неразрешенный внешний символ "int __cdecl f4(void)" (?f4@@YAHXZ) в функции _main
+string.obj : error LNK2019: ссылка на неразрешенный внешний символ "int __cdecl w1(void)" (?w1@@YAHXZ) в функции _main
+string.obj : error LNK2019: ссылка на неразрешенный внешний символ "int __cdecl w2(void)" (?w2@@YAHXZ) в функции _main
+string.obj : error LNK2019: ссылка на неразрешенный внешний символ "int __cdecl w3(void)" (?w3@@YAHXZ) в функции _main
+A:\GitHub\String\string\Debug\string.exe : fatal error LNK1120: неразрешенных внешних элементов: 10
