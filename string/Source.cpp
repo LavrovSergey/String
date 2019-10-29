@@ -1,5 +1,8 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <iostream>
+#include <cstring>
+#include <conio.h>
 #include "Header.h"
-#include<iostream>
 #include <string>
 using namespace std;
 int s1()
@@ -10,7 +13,7 @@ int s1()
 	cin >> symbole;
 	int kod = (int)symbole;
 	cout << kod;
-
+	
 
 	return 0;
 }
@@ -67,6 +70,7 @@ int s13()
 	}
 	else if (digit > 1 && digit < 5) { cout << digit << " цифры" << endl; }
 	else(cout << digit << " цифр" << endl);
+	delete[]s;
 	return 0;
 }
 
@@ -87,6 +91,7 @@ int s14()
 	}
 	else if (alpha > 1 && alpha < 5) { cout << alpha << " прописные буквы" << endl; }
 	else(cout << alpha << " прописных букв" << endl);
+	delete[]s;
 	return 0;
 }
 int s16()
@@ -101,16 +106,16 @@ int s16()
 			s[i] = tolower(s[i]);;
 	}
 	cout << s << endl;
+	delete[]s;
 	return 0;
 }
 int s26()
 {
-	int j = 0;
 	setlocale(LC_ALL, "Russian");
 	char s[256];
 	cout << "Введите строку" << endl;
 	cin.getline(s, 256);
-	int n;
+	size_t n;
 	cout << "Введите число" << endl;
 	cin >> n;
 	while (n < 0)
@@ -118,13 +123,28 @@ int s26()
 		cout << "Должно быть больше 0" << endl;
 		cin >> n;
 	}
-	if (strlen(s) > n) {
-		for (int i = n + 1; i = strlen(s); i++) { s[j] = s[i]; j++; }
+	char* s1 = new char[n + 1];
+	if (strlen(s) >= n) {
+		int b = strlen(s) - n;
+		strcpy(s1, s + b);
 	}
-	if (strlen(s) < n) { for (int i = 0; i = strlen(s); i++) { s[n + 1 + i] = s[i]; s[i] = '.'; } }
-	cout << s << endl;
+	else
+	{
+		s1[0] = 0;
+		for (size_t i = 0; i < n - strlen(s); i++)
+		{
+			strcat(s1, ".");
+		}
+		strcat(s1, s);
+	}
+	cout << s1 << endl;
+	delete[] s1;
+	delete[]s;
+	system("pause");
 	return 0;
 }
+	
+
 int s27()
 {
 	setlocale(LC_ALL, "Russian");
@@ -140,5 +160,144 @@ int s27()
 	result = s1.substr(0, n1);
 	result += s2.substr(s2.size() - n2, n2);
 	cout << result << endl;
+	
+	return 0;
+}
+int s28()
+{
+	setlocale(LC_ALL, "Russian");
+	char s[256];
+	char s1[256];
+	cout << "Введите строку" << endl;
+	cin.getline(s, 256);
+	char symbole;
+	cout << "Введите символ" << endl;
+	cin >> symbole;
+	int j = 0;
+	for (int i = 0; i <= strlen(s); i++)
+	{
+		if (s[i] == symbole)
+		{
+			s1[j] = s[i];
+			s1[j + 1] = symbole;
+			j++;
+		}
+		else(s1[j] = s[i]);
+
+
+	}
+	cout << s1 << endl;
+	delete[]s;
+	delete[]s1;
+	return 0;
+}
+bool isalpha_rus(char c) {
+	return c >= 'а' && c <= 'я' || c >= 'А' && c <= 'Я';
+}
+int s41()
+{
+	setlocale(LC_ALL, "Russian");
+	char s[256];
+	cout << "Введите строку" << endl;
+	cin.getline(s, 256);
+	int count = 1;
+	if (s[0] == 32)count = 0;
+	if (s[0] != 32)count = 1;
+	for (int i = 1; i < strlen(s) - 1; i++)
+	{
+		if (isalpha_rus(s[i]) && isspace(s[i + 1]))count++;
+	}
+	cout << "Всего " << count << " слов" << endl;
+	delete[]s;
+
+	return 0;
+}
+int s42()
+{
+	setlocale(LC_ALL, "");
+	char s[256];
+	cout << "Введите строку" << endl;
+	cin.getline(s, 256);
+	int count = 0, wordlenght;
+	for (int i = 0;; i++)
+	{
+		for (wordlenght = 0;; wordlenght++)
+		{
+			if (s[i + wordlenght] == ' ' || s[i + wordlenght] == '\0' || s[i + wordlenght] == ',' || s[i + wordlenght] == '.' || s[i + wordlenght] == '!' || s[i + wordlenght] == '?')
+				break;
+		}
+		if (s[i] == 'А')
+		{
+			count++;
+		}
+		i += wordlenght;
+		if (s[i] == '\0')
+			break;
+	}
+	cout << count;
+	delete[]s;
+	return 0;
+}
+int s43()
+{
+	int a = 0;
+	int count = 0;
+	setlocale(LC_ALL, "");
+	char s[256];
+	cout << "Введите строку" << endl;
+	cin.getline(s, 256);
+	for (int i = 0; i < strlen(s); i++)
+	{
+		if (s[i] == 'А') { a++; }
+		if ((s[i] == ' ') || (i < strlen(s)) && a > 0) { count++; a = 0; }
+	}
+	cout << count;
+	delete[]s;
+	return 0;
+}
+int s58()
+{
+	setlocale(LC_ALL, "");
+	char s[256];
+	cout << "Введите строку" << endl;
+	cin.getline(s, 256);
+	int slash = 0;
+	int point = 0;
+	for (int i = strlen(s) - 1; i >= 0; i--)
+	{
+		if (s[i] == '.') { point = i; break; }
+	}
+	for (int i = strlen(s) - 1; i >= 0; i--)
+	{
+		if (s[i] == '\\') { slash = i; break; }
+	}
+	for (int i = slash + 1; i < point; i++)
+	{
+		cout << s[i];
+	}
+	delete[]s;
+	return 0;
+}
+int s59()
+{
+	setlocale(LC_ALL, "");
+	char s[256];
+	cout << "Введите строку" << endl;
+	cin.getline(s, 256);
+	int zero = 0;
+	int point = 0;
+	for (int i = strlen(s); i >= 0; i--)
+	{
+		if (s[i] == '\0') { zero = i; break; }
+	}
+	for (int i = strlen(s) - 1; i >= 0; i--)
+	{
+		if (s[i] == '.') { point = i; break; }
+	}
+	for (int i = point + 1; i < zero; i++)
+	{
+		cout << s[i];
+	}
+	delete[]s;
 	return 0;
 }
